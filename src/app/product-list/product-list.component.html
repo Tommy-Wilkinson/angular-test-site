@@ -1,10 +1,21 @@
 <h2>Products</h2>
-<div>
+<div *ngFor="let product of products; index as productId">
   <p class=custom-paragraph>
-To-Do: Add products here
-</p><br>
+    <a [title]="product.name + ' details.'" [routerLink]="['/products',productId]">
+    {{product.name}}
+    </a>
+  </p>
+  <p *ngIf="product.description">
+    Description: {{product.description}}
+    </p>
+    <p *ngIf="product.price">
+      ${{product.price}}.00
+      </p>
+<br>
+<a class="custom-button" (click)="superShare()">Add to Cart</a>
+<app-product-alerts [product]="product" (notice)="onNotify()"></app-product-alerts>
 </div>
-<a class="custom-button">Press here</a>
+
 
 
 
